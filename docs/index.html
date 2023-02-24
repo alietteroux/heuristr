@@ -21,15 +21,15 @@
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-
+    
 
     <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-
+    
     <a class="navbar-brand me-2" href="index.html">heuristr</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
-
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -48,13 +48,13 @@
 <li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/alietteroux/heuristr/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
-
+     
   </a>
 </li>
       </ul>
 </div>
 
-
+    
   </div>
 </nav><div class="container template-home">
 <div class="row">
@@ -81,10 +81,14 @@
 <a href="#dealing-with-temporal-spatial-and-file-fields" id="toc-dealing-with-temporal-spatial-and-file-fields">Dealing with <em>temporal</em>, <em>spatial</em> and <em>file</em> fields</a>
 <ul>
 <li><a href="#temporal-fields" id="toc-temporal-fields"><em>Temporal</em> fields</a></li>
+<li><a href="#spatial-fields" id="toc-spatial-fields"><em>Spatial</em> fields</a></li>
+<li><a href="#file-fields" id="toc-file-fields"><em>File</em> fields</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#renaming-tables-and-columns---if-desired" id="toc-renaming-tables-and-columns---if-desired">Renaming tables and columns - if desired</a></li>
+<li><a href="#saving-data-into-a-r-data-file" id="toc-saving-data-into-a-r-data-file">Saving data into a R data file</a></li>
 </ul>
 <div class="section level1">
 <div class="page-header"><h1 id="heuristr">heuristr<a class="anchor" aria-label="anchor" href="#heuristr"></a>
@@ -97,6 +101,7 @@
 <p>You can install the development version of heuristr from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"alietteroux/heuristr"</span>)</span></code></pre></div>
+<p> </p>
 </div>
 <div class="section level1">
 <h1 id="before-using-heuristr--export-xml-files-from-heurist">Before using heuristr : export XML files from Heurist<a class="anchor" aria-label="anchor" href="#before-using-heuristr--export-xml-files-from-heurist"></a>
@@ -106,12 +111,14 @@
 <li>a XML file including data (fields’values entered in the database) : this XML file can be exported from Heurist via the Publish menu &gt; Export &gt; XML (recommended option). Be careful : if some records are selected in your Heurist session during the export, only data about theses selected records will be exported.</li>
 <li>a XML file exported from Heurist describing database structure (vocabularies, fields’caracteristics…) : this XML file can be exported from Heurist via the Design menu &gt; Download &gt; Structure (XML).</li>
 </ul>
+<p> </p>
 </div>
 <div class="section level1">
 <h1 id="example-database-and-data-files">Example database and data files<a class="anchor" aria-label="anchor" href="#example-database-and-data-files"></a>
 </h1>
 <p>We’ve created a fictitious Heurist database, named “aliet_test_R”, viewable at <a href="https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;website" class="external-link uri">https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;website</a></p>
 <p>From this database, we’ve exported two XML files : have a look to the folder “documents/data_example” of the <a href="https://github.com/alietteroux/heuristr" class="external-link">Github repository</a>, or directly download these files <a href="https://uncloud.univ-nantes.fr/index.php/s/QrgE4zeJfgP4R4Q" class="external-link">here</a>.</p>
+<p> </p>
 </div>
 <div class="section level1">
 <h1 id="read-data-and-paradata-from-heurist-database-with-hr_import-function">Read data and paradata from Heurist database, with <em>hr_import()</em> function<a class="anchor" aria-label="anchor" href="#read-data-and-paradata-from-heurist-database-with-hr_import-function"></a>
@@ -123,7 +130,7 @@
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; We're importing data and structure files (most time-consuming step)... Thank you for waiting...</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data and structure files have been successfully imported. Now we're selecting and managing data... Thank you for waiting...</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; We've finished. It's ready to use !</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Import has required 6.91 secs</span></span></code></pre></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Import has required 7.61 secs</span></span></code></pre></div>
 <p>This function returns several dataframes in the Environment :</p>
 <ul>
 <li>Each Heurist <em>‘record type’</em> as a dataframe : in those dataframes, each row matches a Heurist <em>‘record’</em>
@@ -139,6 +146,7 @@
 <p>Thereafter, we’ll manage data using <em>tidyr</em> and <em>ggplot2</em> ; and we’ll display tables with <em>knitr::kable()</em>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
+<p> </p>
 <div class="section level2">
 <h2 id="about-columns-names-and-formats">About columns names and formats<a class="anchor" aria-label="anchor" href="#about-columns-names-and-formats"></a>
 </h2>
@@ -924,6 +932,7 @@ factor
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Personne<span class="sc">$</span><span class="st">`</span><span class="at">Nombre de publications</span><span class="st">`</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    8.00   15.25   17.50   17.67   19.75   28.00</span></span></code></pre></div>
+<p> </p>
 </div>
 <div class="section level2">
 <h2 id="dealing-with-repeatable-fields-multiple-values-in-a-field-for-one-record">Dealing with “repeatable” fields (multiple values in a field for one record)<a class="anchor" aria-label="anchor" href="#dealing-with-repeatable-fields-multiple-values-in-a-field-for-one-record"></a>
@@ -1381,6 +1390,7 @@ Paul Ochon (22 Jul 1975) Male
 </tr>
 </tbody>
 </table>
+<p> </p>
 </div>
 <div class="section level2">
 <h2 id="gathering-terms-in-a-vocabulary">Gathering terms in a vocabulary<a class="anchor" aria-label="anchor" href="#gathering-terms-in-a-vocabulary"></a>
@@ -2200,6 +2210,7 @@ Utilitaires
 </tr>
 </tbody>
 </table>
+<p> </p>
 </div>
 <div class="section level2">
 <h2 id="dealing-with-record-relationship">Dealing with “Record relationship”<a class="anchor" aria-label="anchor" href="#dealing-with-record-relationship"></a>
@@ -2280,7 +2291,7 @@ relmarker
 <div class="section level3">
 <h3 id="relation-vocabularies">“Relation” vocabularies<a class="anchor" aria-label="anchor" href="#relation-vocabularies"></a>
 </h3>
-<p>“Relationship marker” fields necessarily use a vocabulary. Those vocabularies are match a value “<em>relation</em>” in the column <em>trm_Domain</em> of the dataframe <em>z.h.vocabularies</em>. Let’s have a look to the different vocabularies (<em>Level1</em>) used in “relationship marker” fields :</p>
+<p>“Relationship marker” fields necessarily use a vocabulary. Those vocabularies match a value “<em>relation</em>” in the column <em>trm_Domain</em> of the dataframe <em>z.h.vocabularies</em>. Let’s have a look to the different vocabularies (<em>Level1</em>) used in “relationship marker” fields :</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>z.h.vocabularies <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trm_Domain<span class="sc">==</span><span class="st">"relation"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Level1) <span class="sc">%&gt;%</span></span>
@@ -2311,7 +2322,7 @@ Level1
 <h3 id="record-relationship-dataframe">“Record relationship” dataframe<a class="anchor" aria-label="anchor" href="#record-relationship-dataframe"></a>
 </h3>
 <p>When a contributor informs a “relationship” via a “relationship marker” in Heurist, an inverse relation is automatically created in Heurist reports. But in the XML data file, it seems we can only recover recorded relations (and not their inverses).</p>
-<p><em>hr_import()</em> function duplicates each relationship of the original table : For each relationship from A to B, hr_import() automatically creates a relationship from B to A.</p>
+<p><em>hr_import()</em> duplicates each relationship of the original table : for each relationship from A to B, <em>hr_import()</em> automatically creates a relationship from B to A.</p>
 <p>“Original” relationships and their “created” inverses can be distinguished by the column <em>z.h.original</em> of the dataframe <em>Record relationship</em>. Then, if you want uniquely treat “original” relationships, you can filter records on this column.</p>
 <p>Let’s have a look to relationship records regarding family links (<em>Level1</em>==“<em>4. Family</em>”).</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">Record relationship</span><span class="st">`</span> <span class="sc">%&gt;%</span></span>
@@ -2542,13 +2553,14 @@ Carrière &amp; Parentèle.relationship
 </tr></tbody>
 </table>
 <p><strong>Please note</strong> : in the previous example, we’ve only used the column <em>z.h.id.Personne</em> of the dataframe <em>Personne</em>, and not the column <em>Carrière &amp; Parentèle.relationship</em> of the dataframe <em>Personne</em>. Indeed, if we had joined by this column, each relation would have been duplicated.</p>
+<p> </p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="dealing-with-temporal-spatial-and-file-fields">Dealing with <em>temporal</em>, <em>spatial</em> and <em>file</em> fields<a class="anchor" aria-label="anchor" href="#dealing-with-temporal-spatial-and-file-fields"></a>
 </h2>
 <p>We name “temporal, spatial and file fields” the values informed in fields (or “detail types” in Heurist language) of type “date”, “geo” or “file”.</p>
-<p>Therefore, these fields match a value “<em>date</em>”, “<em>geo</em>” or “<em>file</em>” in the column <em>field.type</em> of the dataframe <em>z.h.tables.fields</em>. To have a look at only informed fields (and not empty fields), we select only fields matching a value “<em>no empty</em>” in the column <em>field.empty</em> of <em>z.h.tables.fields</em>.</p>
+<p>These fields match a value “<em>date</em>”, “<em>geo</em>” or “<em>file</em>” in the column <em>field.type</em> of the dataframe <em>z.h.tables.fields</em>. To have a look at only informed fields (and not empty fields), we select only fields matching a value “<em>no empty</em>” in the column <em>field.empty</em> of <em>z.h.tables.fields</em>.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>z.h.tables.fields <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(field.type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"date"</span>,<span class="st">"geo"</span>,<span class="st">"file"</span>) <span class="sc">&amp;</span> </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>           field.empty<span class="sc">==</span><span class="st">"no empty"</span>) <span class="sc">%&gt;%</span></span>
@@ -3752,8 +3764,522 @@ NA
 </tr>
 </tbody>
 </table>
+<p>Values of “temporal” fields can be described by several columns specifying “year”, “month”, “day” (see above <em>Date de naissance</em>), but also “hours”, “minutes” and “seconds”. For example, <em>End date</em> in the dataframe <em>Objet Exposition</em> :</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Colnames</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="st">`</span><span class="at">Objet - Exposition</span><span class="st">`</span>)[<span class="fu">grepl</span>(<span class="st">"^End date.+"</span>,<span class="fu">names</span>(<span class="st">`</span><span class="at">Objet - Exposition</span><span class="st">`</span>))]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "End date.temporal.raw"  "End date.temporal.type" "End date.DAT.raw"      </span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] "End date.DAT.year"      "End date.DAT.month"     "End date.DAT.day"      </span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] "End date.DAT.hour"      "End date.DAT.minutes"   "End date.DAT.seconds"  </span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] "End date.property.DET"</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Records</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">Objet - Exposition</span><span class="st">`</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">z.h.id.Objet - Exposition</span><span class="st">`</span>,<span class="fu">starts_with</span>(<span class="st">"End date"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 27%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">
+z.h.id.Objet - Exposition
+</th>
+<th style="text-align: left;">
+End date.temporal.raw
+</th>
+<th style="text-align: left;">
+End date.temporal.type
+</th>
+<th style="text-align: left;">
+End date.DAT.raw
+</th>
+<th style="text-align: left;">
+End date.DAT.year
+</th>
+<th style="text-align: left;">
+End date.DAT.month
+</th>
+<th style="text-align: left;">
+End date.DAT.day
+</th>
+<th style="text-align: left;">
+End date.DAT.hour
+</th>
+<th style="text-align: left;">
+End date.DAT.minutes
+</th>
+<th style="text-align: left;">
+End date.DAT.seconds
+</th>
+<th style="text-align: left;">
+End date.property.DET
+</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+65
+</td>
+<td style="text-align: left;">
+VER=1|TYP=s|DAT=2015-12-01 16:30|DET=0|CLD=Gregorian
+</td>
+<td style="text-align: left;">
+Simple Date
+</td>
+<td style="text-align: left;">
+2015-12-01 16:30
+</td>
+<td style="text-align: left;">
+2015
+</td>
+<td style="text-align: left;">
+12
+</td>
+<td style="text-align: left;">
+01
+</td>
+<td style="text-align: left;">
+16
+</td>
+<td style="text-align: left;">
+30
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+Unknown
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+67
+</td>
+<td style="text-align: left;">
+VER=1|TYP=s|DAT=2017-04-10 17:30:30|DET=1|CLD=Gregorian
+</td>
+<td style="text-align: left;">
+Simple Date
+</td>
+<td style="text-align: left;">
+2017-04-10 17:30:30
+</td>
+<td style="text-align: left;">
+2017
+</td>
+<td style="text-align: left;">
+04
+</td>
+<td style="text-align: left;">
+10
+</td>
+<td style="text-align: left;">
+17
+</td>
+<td style="text-align: left;">
+30
+</td>
+<td style="text-align: left;">
+30
+</td>
+<td style="text-align: left;">
+Attested
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+72
+</td>
+<td style="text-align: left;">
+2016-12-15
+</td>
+<td style="text-align: left;">
+Manual Date
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+2016
+</td>
+<td style="text-align: left;">
+12
+</td>
+<td style="text-align: left;">
+15
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+NA
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+116
+</td>
+<td style="text-align: left;">
+VER=1|TYP=s|DAT=2022-12-09 16|DET=0|CLD=Gregorian
+</td>
+<td style="text-align: left;">
+Simple Date
+</td>
+<td style="text-align: left;">
+2022-12-09 16
+</td>
+<td style="text-align: left;">
+2022
+</td>
+<td style="text-align: left;">
+12
+</td>
+<td style="text-align: left;">
+09
+</td>
+<td style="text-align: left;">
+16
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+Unknown
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="spatial-fields">
+<em>Spatial</em> fields<a class="anchor" aria-label="anchor" href="#spatial-fields"></a>
+</h3>
+<p>“Spatial” fields are always declined into 2 columns :</p>
+<ul>
+<li>one finishing by <strong>“.geo.type”</strong>
+</li>
+<li>one finishing by <strong>“.geo.wkt”</strong>
+</li>
+</ul>
+<p>Let’s have a look with <em>Location (mappable)</em> of the dataframe <em>Place</em> :</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Colnames</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Place)[<span class="fu">grepl</span>(<span class="st">"^Location </span><span class="sc">\\</span><span class="st">(mappable</span><span class="sc">\\</span><span class="st">).+"</span>,<span class="fu">names</span>(Place))]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Location (mappable).geo.type" "Location (mappable).geo.wkt"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Records</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>Place <span class="sc">%&gt;%</span> </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(z.h.title.Place,<span class="fu">starts_with</span>(<span class="st">"Location (mappable)"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 68%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">
+z.h.title.Place
+</th>
+<th style="text-align: left;">
+Location (mappable).geo.type
+</th>
+<th style="text-align: left;">
+Location (mappable).geo.wkt
+</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+Beaulieu, Mareuil-sur-Lay
+</td>
+<td style="text-align: left;">
+point
+</td>
+<td style="text-align: left;">
+POINT(-1.22474 46.527361)
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Festival de Mervent, Vendée
+</td>
+<td style="text-align: left;">
+point
+</td>
+<td style="text-align: left;">
+POINT(-0.76561 46.534892)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Exposition de Brétignolles
+</td>
+<td style="text-align: left;">
+point
+</td>
+<td style="text-align: left;">
+POINT(-1.853889 46.628611)
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Bois des Girondins, La Roche-sur-Yon
+</td>
+<td style="text-align: left;">
+point
+</td>
+<td style="text-align: left;">
+POINT(-1.3693 46.715296)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Estuaire du Lay, Vendée
+</td>
+<td style="text-align: left;">
+polygon
+</td>
+<td style="text-align: left;">
+POLYGON((-1.316729 46.3353,-1.314411 46.328301,-1.305571 46.31958,-1.29673 46.318631,-1.299734 46.326877,-1.30909 46.332038,-1.316729 46.3353))
+</td>
+</tr>
+</tbody>
+</table>
+<p>Using <em>sf</em> package, we’re abble to cartography a “spatial field” of type “point” by this way :</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a sf object with sf::st_as_sf()</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>sf_Place_point <span class="ot">&lt;-</span> Place <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Location (mappable).geo.type</span><span class="st">`</span><span class="sc">==</span><span class="st">"point"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"geom"</span><span class="ot">=</span><span class="st">"Location (mappable).geo.wkt"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">wkt =</span> <span class="st">"geom"</span>,<span class="at">crs =</span> <span class="fu">st_crs</span>(<span class="dv">4326</span>))</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with ggplot2</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>sf_Place_point <span class="sc">%&gt;%</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_label</span>(<span class="fu">aes</span>(<span class="at">label=</span>z.h.title.Place,<span class="at">hjust=</span><span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span>), </span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">col=</span><span class="st">"red"</span>,<span class="at">size=</span><span class="fl">2.7</span>)</span></code></pre></div>
+<p><img src="reference/figures/Spat.Plot.Hide-1.png" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="file-fields">
+<em>File</em> fields<a class="anchor" aria-label="anchor" href="#file-fields"></a>
+</h3>
+<p>“File” fields may be declined into several columns describing file paradata.</p>
+<p>Let’s have a look with <em>Logo</em> of the dataframe <em>Laboratoire</em> :</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Colnames</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Laboratoire)[<span class="fu">grepl</span>(<span class="st">"^Logo.+"</span>,<span class="fu">names</span>(Laboratoire))]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Logo.file.date"     "Logo.file.fileSize" "Logo.file.id"      </span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "Logo.file.mimeType" "Logo.file.nonce"    "Logo.file.origName"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "Logo.file.url"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Records</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>Laboratoire <span class="sc">%&gt;%</span> </span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(z.h.title.Laboratoire,<span class="fu">starts_with</span>(<span class="st">"Logo"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 37%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">
+z.h.title.Laboratoire
+</th>
+<th style="text-align: left;">
+Logo.file.date
+</th>
+<th style="text-align: left;">
+Logo.file.fileSize
+</th>
+<th style="text-align: left;">
+Logo.file.id
+</th>
+<th style="text-align: left;">
+Logo.file.mimeType
+</th>
+<th style="text-align: left;">
+Logo.file.nonce
+</th>
+<th style="text-align: left;">
+Logo.file.origName
+</th>
+<th style="text-align: left;">
+Logo.file.url
+</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+LRO - Laboratoire de Recherche d’Objets
+</td>
+<td style="text-align: left;">
+2023-02-08 06:08:50
+</td>
+<td style="text-align: left;">
+1 kB
+</td>
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+image/png
+</td>
+<td style="text-align: left;">
+1c21c313d58abf1443923f88681e2816efe808ae
+</td>
+<td style="text-align: left;">
+logo_labo_LRO.png
+</td>
+<td style="text-align: left;">
+<a href="https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=1c21c313d58abf1443923f88681e2816efe808ae" class="external-link uri">https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=1c21c313d58abf1443923f88681e2816efe808ae</a>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+IAO - Institut Afficionados d’Objets
+</td>
+<td style="text-align: left;">
+2023-02-08 06:08:31
+</td>
+<td style="text-align: left;">
+1 kB
+</td>
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+image/png
+</td>
+<td style="text-align: left;">
+840c8ff9cf99cf29958338c197da9cb028f5b613
+</td>
+<td style="text-align: left;">
+logo_labo_IAO.png
+</td>
+<td style="text-align: left;">
+<a href="https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=840c8ff9cf99cf29958338c197da9cb028f5b613" class="external-link uri">https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=840c8ff9cf99cf29958338c197da9cb028f5b613</a>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+OT - Objets Toujours
+</td>
+<td style="text-align: left;">
+2023-02-20 07:17:52
+</td>
+<td style="text-align: left;">
+2 kB
+</td>
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+image/png
+</td>
+<td style="text-align: left;">
+11dbda0ecd0029a73c3e327be7e1467a49aa8056
+</td>
+<td style="text-align: left;">
+logo_labo_OT.png
+</td>
+<td style="text-align: left;">
+<a href="https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=11dbda0ecd0029a73c3e327be7e1467a49aa8056" class="external-link uri">https://heurist.huma-num.fr/heurist/?db=aliet_test_R&amp;file=11dbda0ecd0029a73c3e327be7e1467a49aa8056</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
 </div>
 </div>
+</div>
+<div class="section level1">
+<h1 id="renaming-tables-and-columns---if-desired">Renaming tables and columns - if desired<a class="anchor" aria-label="anchor" href="#renaming-tables-and-columns---if-desired"></a>
+</h1>
+<p>To avoid using this symbol <strong>`</strong> in R, remember that you can remove spaces and dashes (dash : <strong>-</strong>) from dataframes and columns names.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. We store all dataframes names of the environment in "df.names", and all dataframes in "l.df"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df.names <span class="ot">&lt;-</span> <span class="fu">ls</span>()[<span class="fu">sapply</span>(<span class="fu">ls</span>(), <span class="cf">function</span>(x) <span class="fu">class</span>(<span class="fu">get</span>(x))) <span class="sc">==</span> <span class="st">'data.frame'</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>l.df <span class="ot">&lt;-</span> <span class="fu">mget</span>(df.names)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. We rename these dataframes names (in "new.names")</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">#- replacing " - " with dots</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>new.names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" - "</span>, <span class="st">"."</span>, df.names)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#- replacing " &amp; " with dots</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>new.names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" &amp; "</span>, <span class="st">"."</span>, new.names)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">#- replacing spaces with dots</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>new.names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"."</span>, new.names)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">#- replacing dashes with dots</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>new.names <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"-"</span>, <span class="st">"."</span>, new.names)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's have a look to new.names :</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>new.names</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Laboratoire"         "Objet"               "Objet.Exposition"   </span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "Personne"            "Place"               "Record.relationship"</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "z.h.tables.fields"   "z.h.vocabularies"</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. We remove all objects we want to rename</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span>df.names)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. We recreate these objects, assigning a new name and renaming columns</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(new.names)) {</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> l.df[[i]]</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">setNames</span>(temp,<span class="fu">gsub</span>(<span class="st">" - "</span>,<span class="st">"."</span>,<span class="fu">names</span>(temp)))</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">setNames</span>(temp,<span class="fu">gsub</span>(<span class="st">" &amp; "</span>,<span class="st">"."</span>,<span class="fu">names</span>(temp)))</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">setNames</span>(temp,<span class="fu">gsub</span>(<span class="st">" "</span>,<span class="st">"."</span>,<span class="fu">names</span>(temp)))</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>  temp <span class="ot">&lt;-</span> <span class="fu">setNames</span>(temp,<span class="fu">gsub</span>(<span class="st">"-"</span>,<span class="st">"."</span>,<span class="fu">names</span>(temp)))</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(new.names[i], temp, <span class="at">envir=</span>.GlobalEnv)</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's have a look to columns names of "Personne"</span></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Personne)</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "z.h.id.Personne"                 "z.h.title.Personne"             </span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] "Nom_1"                           "Prénom"                         </span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] "Sexe"                            "Date.de.naissance.temporal.raw" </span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] "Date.de.naissance.temporal.type" "Date.de.naissance.DAT.raw"      </span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] "Date.de.naissance.DAT.year"      "Date.de.naissance.DAT.month"    </span></span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] "Date.de.naissance.DAT.day"       "Date.de.naissance.property.DET" </span></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] "Lieu.de.naissance.geo.type"      "Lieu.de.naissance.geo.wkt"      </span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] "Nombre.de.publications"          "Nom_2"                          </span></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] "Carrière.Parentèle.relationship" "z.h.added"                      </span></span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] "z.h.citeAs"                      "z.h.modified"                   </span></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] "z.h.workgroup"                   "z.h.visibility"                 </span></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [23] "z.h.visnote"                     "z.h.workgroup.id"</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. We remove temporary objects</span></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(df.names,l.df,new.names,temp,i)</span></code></pre></div>
+</div>
+<div class="section level1">
+<h1 id="saving-data-into-a-r-data-file">Saving data into a R data file<a class="anchor" aria-label="anchor" href="#saving-data-into-a-r-data-file"></a>
+</h1>
+<p><strong>If <em>rh_import()</em> has taken a long time</strong>, remember that you can save your workspace to a file named .RData, and quickly restore it. We give an example in following lines (we’d like to save all objects of the enviroment in a folder named “export”) :</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saving all objects of the environment</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">"export/aliet_test_R.RData"</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Restoring all of these objects</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"export/aliet_test_R.RData"</span>)</span></code></pre></div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
@@ -3805,9 +4331,9 @@ NA
     </footer>
 </div>
 
+  
 
-
-
+  
 
   </body>
 </html>
