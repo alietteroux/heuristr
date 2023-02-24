@@ -17,7 +17,7 @@
 #'   \item A dataframe named "*z.h.tables.fields*" : each row describes a field in an used Heurist 'record type' (type, help text, requirement, repeatability...)
 #'   \item A dataframe named "*z.h.vocabularies*" : each row matches a term in an used Heurist vocabulary ; each term is joined to a level (its ranking position in the vocabulary) and attached to its parents'terms
 #' }
-#'
+#' @export
 #' @importFrom stats aggregate ave na.omit reshape setNames
 
 

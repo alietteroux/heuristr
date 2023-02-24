@@ -8,6 +8,15 @@
 \description{
 So far, this package contains only one function : hr_import(). This function reads XML files exported from Heurist (https://heuristnetwork.org/) to build as many dataframes as 'record types' are used in the Heurist database. Each Heurist 'record type' matches a dataframe ; each Heurist 'record' matches a row in a dataframe. Furthermore, this function builds two other dataframes describing fields (type, help text, requirement, repeatability...) and vocabularies.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/alietteroux/heuristr}
+  \item \url{https://alietteroux.github.io/heuristr/}
+  \item Report bugs at \url{https://github.com/alietteroux/heuristr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Aliette Roux \email{aliette.roux@univ-nantes.fr}
 
